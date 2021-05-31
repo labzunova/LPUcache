@@ -13,8 +13,8 @@ type keyValueTTL struct {
 }
 
 var initSize uint32 = 48    // каждый элемент изначальной структуры весит 8 байт
-var mapElemSize uint32 = 16 // 8 байта ключ и 8 указатель на слайс
-var elemSize uint32 = 128   // 128 байта строка и 24 Time
+var mapElemSize uint32 = 16 // 8 байтов ключ + 8 указатель на слайс
+var elemSize uint32 = 152   // 128 байтов строка + 24 тип Time
 
 type Cache struct {
 	size          uint32
