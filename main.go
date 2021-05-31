@@ -1,8 +1,14 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 )
+
+// PS: не уверена в том, правильно ли я поняла задание со звездочкой.
+// Как я поняла, оно заключается в том, чтобы следить за тем, чтобы память кэша не становилась больше указанной.
+
+var maxSize uint32 = 30001
 
 type InitValues struct {
 	size, memory, TTL uint32
@@ -15,6 +21,9 @@ func initialize() (*InitValues, error) {
 	_, err := fmt.Scanf("%d", &size)
 	if err != nil {
 		return nil, err
+	}
+	if size >= maxSize {
+		return nil, errors.New("cache size must be under 30000")
 	}
 
 	fmt.Println("Enter time to live for values(in seconds)")
@@ -30,8 +39,8 @@ func initialize() (*InitValues, error) {
 	}
 
 	result := InitValues{
-		size: size,
-		TTL: TTL,
+		size:   size,
+		TTL:    TTL,
 		memory: memory,
 	}
 	return &result, err
